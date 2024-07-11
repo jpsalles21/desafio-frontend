@@ -1,0 +1,14 @@
+.login-container {
+    height: 100vh;
+    display: flex;    
+}
+
+.art {
+    background: linear-gradient(to bottom, #065D2F, #DBEDD6);
+    width: 50%;
+}
+
+.formulario-container {
+    background-color: #fff;   
+    width: 50%;   
+}
