@@ -1,6 +1,8 @@
 
 export interface User {
-    name: string;
+    id?: string | number;
     email: string;
-    accessLevel: number;
+    name: string;
+    level: 1 | 2 | 3 | 4 | 5;
+    password?: string;
 }
