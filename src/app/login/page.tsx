@@ -8,7 +8,7 @@ export default function Login () {
             <div className="art">
                 <p>oi</p>
             </div>
-            <section className="formulario-container">
+            <section className="form-container">
               <LoginForm/>
             </section>
         </div>
