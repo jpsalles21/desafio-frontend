@@ -1,0 +1,10 @@
+.user-list__header {
+    justify-content: space-between;
+    display: flex;
+    padding: 0px 20px;
+}
+
+.user-list {
+    flex-direction: column;
+    display: flex;
+}
