@@ -40,7 +40,7 @@ export const UserList = () => {
 
     const handleAddNewUser = () => {
         setShowModal(true);
-        setFormType('create');       
+        setFormType('create');
     }
 
     const handleEditUser = () => {
@@ -48,9 +48,9 @@ export const UserList = () => {
         setFormType('edit');
     }
 
-    const handleCloseModal = () => { 
-         setShowModal(false)
-         setSelectedUser(undefined);
+    const handleCloseModal = () => {
+        setShowModal(false)
+        setSelectedUser(undefined);
     }
 
     const deleteUser = async (user: User) => {
@@ -67,23 +67,27 @@ export const UserList = () => {
                 <h2>Usuários</h2>
                 <Button label="Adicionar usuário" variant="addUser" onClick={handleAddNewUser} />
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>NOME</th>
-                        
-                        <th className='user-list-content__cell-alignment'>EMAIL</th>
-                        <th className='user-list-content__cell-alignment'>NÍVEL DE ACESSO</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.map(user => (
-                        <UserRow key={user.email} user={user} openEditModal={handleEditUser} setSelectedUser={setSelectedUser} deleteUser={deleteUser}/>
-                    ))}
-                </tbody>
-            </table>
-            <UserModal isOpen={showModal} closeModal={handleCloseModal}  selectedUser={selectedUser} formType={formType}/>
+            {users.length === 0 ? (
+                <div className='empty-list' style={{display: 'flex', justifyContent: 'center', fontSize: '40px', padding: '180px'}}><p>Não há usuários cadastrados.</p></div>
+            ) : (
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NOME</th>
+
+                            <th className='user-list-content__cell-alignment'>EMAIL</th>
+                            <th className='user-list-content__cell-alignment'>NÍVEL DE ACESSO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {users.map(user => (
+                            <UserRow key={user.email} user={user} openEditModal={handleEditUser} setSelectedUser={setSelectedUser} deleteUser={deleteUser}  />
+                        ))}
+                    </tbody>
+                </table>
+            )}
+            <UserModal isOpen={showModal} closeModal={handleCloseModal} selectedUser={selectedUser} formType={formType} />
         </section>
     );
 };

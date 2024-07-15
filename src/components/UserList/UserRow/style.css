@@ -2,3 +2,7 @@
     padding-left: 10px;
     cursor: pointer;
 }
+
+.user-list-content__name {
+    cursor: pointer;
+}
