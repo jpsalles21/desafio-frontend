@@ -1,14 +1,31 @@
 .login-container {
     height: 100vh;
-    display: flex;    
+    display: flex;  
+    background: linear-gradient(to bottom, #065D2F, #DBEDD6);
+  
 }
 
-.art {
-    background: linear-gradient(to bottom, #065D2F, #DBEDD6);
+.login-container__art {    
     width: 50%;
 }
 
 .form-container {
     background-color: #fff;   
     width: 50%;   
+    border-radius: 15px;
+    z-index: 1;
+}
+
+.wave1 {
+    width: 1048px;
+    height: 805px;
+    position: absolute;
+    
+}
+
+.wave2{
+    width: 1048px;
+    height: 403px;
+    position: relative;
+    top: 542px;
 }
