@@ -14,6 +14,8 @@ export const UserList = () => {
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState<boolean>(false);
     const [formType, setFormType] = useState<'create' | 'edit'>('create');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [usersPerPage] = useState<number>(10);
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -28,7 +30,7 @@ export const UserList = () => {
         };
 
         fetchUsers();
-    }, [users]);
+    }, [users, currentPage]);
 
     if (loading) {
         return <div style={{ fontSize: '50px' }}>Carregando...</div>;
@@ -37,6 +39,12 @@ export const UserList = () => {
     if (error) {
         return <div>{error}</div>;
     }
+
+    const indexOfLastUser = currentPage * usersPerPage;
+    const indexOfFirstUser = indexOfLastUser - usersPerPage;
+    const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
     const handleAddNewUser = () => {
         setShowModal(true);
@@ -49,7 +57,7 @@ export const UserList = () => {
     }
 
     const handleCloseModal = () => {
-        setShowModal(false)
+        setShowModal(false);
         setSelectedUser(undefined);
     }
 
@@ -67,27 +75,31 @@ export const UserList = () => {
                 <h2>Usuários</h2>
                 <Button label="Adicionar usuário" variant="addUser" onClick={handleAddNewUser} />
             </div>
-            {users.length === 0 ? (
-                <div className='empty-list' style={{display: 'flex', justifyContent: 'center', fontSize: '40px', padding: '180px'}}><p>Não há usuários cadastrados.</p></div>
-            ) : (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>NOME</th>
-
-                            <th className='user-list-content__cell-alignment'>EMAIL</th>
-                            <th className='user-list-content__cell-alignment'>NÍVEL DE ACESSO</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {users.map(user => (
-                            <UserRow key={user.email} user={user} openEditModal={handleEditUser} setSelectedUser={setSelectedUser} deleteUser={deleteUser}  />
-                        ))}
-                    </tbody>
-                </table>
-            )}
+            <table>
+                <thead>
+                    <tr>
+                        <th>NOME</th>
+                        <th className='user-list-content__cell-alignment'>EMAIL</th>
+                        <th className='user-list-content__cell-alignment'>NÍVEL DE ACESSO</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {currentUsers.map(user => (
+                        <UserRow key={user.email} user={user} openEditModal={handleEditUser} deleteUser={deleteUser} setSelectedUser={setSelectedUser} />
+                    ))}
+                </tbody>
+            </table>
             <UserModal isOpen={showModal} closeModal={handleCloseModal} selectedUser={selectedUser} formType={formType} />
+            <ul className="pagination">
+                {Array.from({ length: Math.ceil(users.length / usersPerPage) }).map((_, index) => (
+                    <li key={index} className={`page-item ${currentPage === index + 1 ? 'active' : ''}`}>
+                        <button onClick={() => paginate(index + 1)} className="page-link">
+                            {index + 1}
+                        </button>
+                    </li>
+                ))}
+            </ul>
         </section>
     );
 };
