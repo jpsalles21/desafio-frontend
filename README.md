@@ -4,10 +4,9 @@ Projeto desenvolvido para o Desafio Frontend da Creatus.
 
 ## Para começar:
 
-Após clonar o projeto, digite ```npm install```
-Depois digite ```npm run dev```
+Após clonar o projeto, digite ```npm install```, depois digite ```npm run dev```
 
-No navegador, entre em: http://localhost:3000/bolsistas
+No navegador, entre em: http://localhost:3000
 
 ## Funcionalidades novas: 
 # Página Bolsistas
