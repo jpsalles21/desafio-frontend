@@ -51,3 +51,9 @@
 .login:hover, .addUser:hover, .save:hover, .back:hover { 
     background-color: #212111;
 }
+
+.login:disabled, .addUser:disabled, .save:disabled, .back:disabled {
+    background-color: #b0b0b0; 
+    color: #ffffff80; 
+    cursor: not-allowed; 
+}
