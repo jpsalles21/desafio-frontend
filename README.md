@@ -3,6 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 Projeto desenvolvido para o Desafio Frontend da Creatus.
 
 ## Para começar:
+Para o backend, você deve rodar no docker a imagem ```creatus/backend-for-frontend-interview```
 
 Após clonar o projeto, digite ```npm install```, depois digite ```npm run dev```
 
