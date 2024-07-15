@@ -6,7 +6,6 @@ import axios from 'axios';
 import { useSearchParams } from 'next/navigation'
 import { Button } from '../Button/button';
 import { useRouter } from 'next/navigation';
-import { getIn } from 'yup';
 
 export const UserProfile = () => {
 
